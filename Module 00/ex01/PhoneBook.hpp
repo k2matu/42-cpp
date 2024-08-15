@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 22:21:09 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/15 00:27:55 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/08/15 00:13:41 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/08/15 00:23:19 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
 #include "Contact.hpp"
+#include <iostream>
+#include <iomanip>
 
-int main(void)
-{
-	PhoneBook phoneBook;
-	std::string Input;
+class PhoneBook {
+	public:
+		Contact contacts[8];
+		int contactCount;
+		int	oldestContact;
+		
+		PhoneBook();
+		void AddContactToPhoneBook(const Contact &contact);
+		void DisplayContacts();
+};
 
-	while (true)
-	{
-		std::cout << "Enter command: ";
-		std::getline(std::cin, Input);
-		if (strcmp(Input.c_str(), "EXIT") == 0)
-			break ;
-		else if (strcmp(Input.c_str(), "ADD") == 0)
-			AddContact(phoneBook);
-		else if (strcmp(Input.c_str(), "SEARCH") == 0)
-			SearchContact(phoneBook);
-	}
-	return (0);
-}
+void SearchContact(PhoneBook& phoneBook);
+bool IsValidPhoneNumber(std::string PhoneNumber);
+void AddContact(PhoneBook& phoneBook);
+
+#endif
