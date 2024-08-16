@@ -6,30 +6,32 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:13:41 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/15 00:23:19 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:28:47 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include "Contact.hpp"
-#include <iostream>
-#include <iomanip>
+# include "Contact.hpp"
+# include <iostream>
+# include <iomanip>
+# include <string>
 
 class PhoneBook {
+	private:
+		static const int kMaxContacts = 8;
+		Contact contacts_[kMaxContacts];
+		int contact_count_;
+		int	oldest_contact_;
 	public:
-		Contact contacts[8];
-		int contactCount;
-		int	oldestContact;
-		
 		PhoneBook();
 		void AddContactToPhoneBook(const Contact &contact);
-		void DisplayContacts();
+		void DisplayContacts() const;
+		int GetContactCount() const;
+		Contact GetContact(int index) const;
 };
 
-void SearchContact(PhoneBook& phoneBook);
-bool IsValidPhoneNumber(std::string PhoneNumber);
-void AddContact(PhoneBook& phoneBook);
+void SearchContact(const PhoneBook& phoneBook);
 
 #endif

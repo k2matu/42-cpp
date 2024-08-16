@@ -6,7 +6,7 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/15 00:26:47 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/08/16 22:06:31 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,19 @@ OBJS	:= ${SRCS:.cpp=.o}
 all:	$(NAME)
 
 %.o: %.cpp
-		@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 		@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-		
+	
+lint:
+	python cpplint.py $(SRCS)
+
 clean:
-		$(RM) $(OBJS)
+	$(RM) $(OBJS)
 		
 fclean: clean
-		$(RM) $(NAME)
+	$(RM) $(NAME)
 		
 re:	clean all
 
