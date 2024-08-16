@@ -6,58 +6,55 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 22:21:09 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/16 23:25:34 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/08/17 00:37:26 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-static bool IsValidPhoneNumber(std::string phone_number)
-{
+static bool IsValidPhoneNumber(const std::string& phone_number) {
 	if (phone_number.empty()) {
 		return (false);
 	}
-	try {
-		std::stol(phone_number);
-		return true;
-	} catch (std::invalid_argument&) {
-		return false;
-	} catch (std::out_of_range&) {
-		return false;
+	if (!(isdigit(phone_number[0])) && phone_number[0] != '+') {
+		return (false);
 	}
+	for (size_t i = 1; i < phone_number.size(); i++) {
+		if (!(isdigit(phone_number[i]))) {
+			return (false);
+		}
+	}
+	return (true);
 }
 
-static void AddContact(PhoneBook& phone_book)
-{
-	std::string first_name;
-	std::string last_name;
-	std::string nick_name;
-	std::string darkest_secret;
-	std::string phone_number;
+static std::string GetInput(const std::string& prompt) {
+	std::string input;
 	
-	std::cout << "First name: ";
-	std::getline(std::cin, first_name);
-	std::cout << "Last name: ";
-	std::getline(std::cin, last_name);
-	std::cout << "Nickname: ";
-	std::getline(std::cin, nick_name);
-	std::cout << "Phone number: ";
-	std::getline(std::cin, phone_number);
-	std::cout << "Darkest secret: ";
-	std::getline(std::cin, darkest_secret);
-	
+	std::cout << prompt;
+	std::getline(std::cin, input);
+	return (input);
+}
+
+static void AddContact(PhoneBook& phone_book) {
+	std::string first_name = GetInput("First Name: ");
+	std::string last_name = GetInput("Last Name :");
+	std::string nick_name = GetInput("Nickname: ");
+	std::string phone_number = GetInput("Phone Number: ");
+	std::string darkest_secret = GetInput("Darkest Secret: ");
+
 	if (!IsValidPhoneNumber(phone_number)) {
 		std::cout << "Invalid phone number!" << std::endl;
 		return ;
 	}
-	if (first_name.empty() || last_name.empty() || nick_name.empty() || darkest_secret.empty()) {
+	if (first_name.empty() || last_name.empty() || nick_name.empty() 
+	|| darkest_secret.empty()) {
 		std::cout << "All fields must be filled!" << std::endl;
 		return ;
 	}
-		
-	Contact contact1(first_name, last_name, nick_name, phone_number, darkest_secret);
-	phone_book.AddContactToPhoneBook(contact1);
+	Contact contact(first_name, last_name, nick_name, phone_number, 
+	darkest_secret);
+	phone_book.AddContactToPhoneBook(contact);
 }
 
 int main(void)

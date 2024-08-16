@@ -6,7 +6,7 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/16 22:06:31 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/08/16 23:40:28 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,6 @@ all:	$(NAME)
 
 $(NAME): $(OBJS)
 		@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	
-lint:
-	python cpplint.py $(SRCS)
 
 clean:
 	$(RM) $(OBJS)
