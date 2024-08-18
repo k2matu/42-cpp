@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 00:13:41 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/16 23:28:47 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/08/17 21:31:15 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/08/18 00:41:02 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
-# include "Contact.hpp"
 # include <iostream>
-# include <iomanip>
 # include <string>
 
-class PhoneBook {
+class Zombie {
 	private:
-		static const int kMaxContacts = 8;
-		Contact contacts_[kMaxContacts];
-		int contact_count_;
-		int	oldest_contact_;
+		std::string name_;
 	public:
-		PhoneBook();
-		void AddContactToPhoneBook(const Contact &contact);
-		void DisplayContacts() const;
-		int GetContactCount() const;
-		Contact GetContact(int index) const;
+		Zombie(std::string name);
+		~Zombie(void);
+		void announce( void );
 };
-
-void SearchContact(const PhoneBook& phoneBook);
 
 #endif

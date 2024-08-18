@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 23:14:34 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/18 23:23:13 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/08/17 21:28:11 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/08/18 00:50:53 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
+#include "../includes/Zombie.hpp"
 
-int main(int argc, char *argv[])
-{
-	for (int i = 1; i <= argc; i++)
-	{
-		for (int j = 0; argv[i][j]; j++)
-		{
-			std::cout << toupper(argv[i][j]);
-		}
-	}
-	return (0);
+Zombie::Zombie(std::string name) {
+	this->name_ = name;
+	std::cout << "Zombie object " << this->name_ << " created" << std::endl;
+}
+
+Zombie::~Zombie() {
+	std::cout << "Zombie object " << this->name_ << " destroyed" << std::endl;
+}
+
+void Zombie::announce( void ) {
+	std::cout << this->name_ << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

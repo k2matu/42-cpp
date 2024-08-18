@@ -6,30 +6,34 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/18 23:23:11 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/08/18 00:49:49 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= megaphone
+NAME	:= Brainz
 CC		:= g++
 RM		:= rm -f
-CFLAGS	:= -Wall -Wextra -Werror -std=c++17 -pedantic
-SRCS	:= megaphone.cpp
+CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -pedantic
+SRCS	:= 	./src/main.cpp \
+			./src/Zombie.cpp \
+			./src/newZombie.cpp \
+			./src/randomChump.cpp
+
 OBJS	:= ${SRCS:.cpp=.o}
 
 all:	$(NAME)
 
 %.o: %.cpp
-		@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 		@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-		
+
 clean:
-		$(RM) $(OBJS)
+	$(RM) $(OBJS)
 		
 fclean: clean
-		$(RM) $(NAME)
+	$(RM) $(NAME)
 		
 re:	clean all
 
