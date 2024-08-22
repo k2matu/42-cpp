@@ -6,14 +6,14 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/20 13:58:51 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/08/22 14:12:40 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= Brain
+NAME	:= brain
 CC		:= g++
 RM		:= rm -f
-CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -pedantic
+CFLAGS	:= -Wall -Wextra -Werror -pedantic
 SRCS	:= 	main.cpp
 
 OBJS	:= ${SRCS:.cpp=.o}

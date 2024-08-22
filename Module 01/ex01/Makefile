@@ -6,14 +6,14 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/20 13:43:38 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/08/22 14:12:46 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= Horde
+NAME	:= horde
 CC		:= g++
 RM		:= rm -f
-CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -pedantic
+CFLAGS	:= -Wall -Wextra -Werror
 SRCS	:= 	./src/main.cpp \
 			./src/Zombie.cpp \
 			./src/zombieHorde.cpp

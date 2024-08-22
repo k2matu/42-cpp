@@ -6,18 +6,16 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/22 14:12:35 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/08/22 14:12:22 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= violence
+NAME	:= harl
 CC		:= g++
 RM		:= rm -f
 CFLAGS	:= -Wall -Wextra -Werror -pedantic
-SRCS	:= 	./src/main.cpp \
-			./src/Weapon.cpp \
-			./src/HumanA.cpp \
-			./src/HumanB.cpp
+SRCS	:=	src/main.cpp \
+			src/Harl.cpp
 
 OBJS	:= ${SRCS:.cpp=.o}
 

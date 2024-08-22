@@ -6,11 +6,11 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/18 00:49:49 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/08/22 14:12:51 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= Brainz
+NAME	:= brainz
 CC		:= g++
 RM		:= rm -f
 CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -pedantic
