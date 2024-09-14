@@ -6,15 +6,15 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/09/13 20:03:04 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/09/14 00:15:44 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= phonebook
+NAME	:= log
 CC		:= g++
 RM		:= rm -f
-CFLAGS	:= -Wall -Wextra -Werror -std=c++17 -pedantic
-SRCS	:= src/main.cpp src/Contact.cpp src/PhoneBook.cpp
+CFLAGS	:= -Wall -Wextra -Werror
+SRCS	:= tests.cpp Account.cpp
 OBJS	:= ${SRCS:.cpp=.o}
 
 all:	$(NAME)

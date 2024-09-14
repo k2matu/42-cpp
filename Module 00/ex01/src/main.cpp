@@ -6,12 +6,12 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 22:21:09 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/17 01:06:20 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/13 20:08:33 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
+#include "../includes/PhoneBook.hpp"
+#include "../includes/Contact.hpp"
 
 static bool IsValidPhoneNumber(const std::string& phone_number) {
 	if (phone_number.empty()) {
@@ -30,13 +30,13 @@ static bool IsValidPhoneNumber(const std::string& phone_number) {
 
 static std::string GetInput(const std::string& prompt) {
 	std::string input;
-	
-	std::cout << prompt;
+
+	std::cout << prompt << std::endl;
 	std::getline(std::cin, input);
 	return (input);
 }
 
-static void AddContact(PhoneBook& phone_book) {
+static void AddContact(PhoneBook& phonebook) {
 	std::string first_name = GetInput("First Name: ");
 	std::string last_name = GetInput("Last Name :");
 	std::string nick_name = GetInput("Nickname: ");
@@ -54,12 +54,12 @@ static void AddContact(PhoneBook& phone_book) {
 	}
 	Contact contact(first_name, last_name, nick_name, phone_number, 
 	darkest_secret);
-	phone_book.AddContactToPhoneBook(contact);
+	phonebook.AddContactToPhoneBook(contact);
 }
 
 int main(void)
 {
-	PhoneBook phone_book;
+	PhoneBook phonebook1;
 	std::string input;
 
 	while (true)
@@ -69,9 +69,9 @@ int main(void)
 		if (input == "EXIT")
 			break ;
 		else if (input == "ADD")
-			AddContact(phone_book);
+			AddContact(phonebook1);
 		else if (input == "SEARCH")
-			SearchContact(phone_book);
+			SearchContact(phonebook1);
 	}
 	return (0);
 }
