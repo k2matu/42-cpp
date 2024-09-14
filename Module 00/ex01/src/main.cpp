@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 22:21:09 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/13 20:08:33 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/14 21:08:11 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static std::string GetInput(const std::string& prompt) {
 }
 
 static void AddContact(PhoneBook& phonebook) {
-	std::string first_name = GetInput("First Name: ");
-	std::string last_name = GetInput("Last Name :");
-	std::string nick_name = GetInput("Nickname: ");
-	std::string phone_number = GetInput("Phone Number: ");
-	std::string darkest_secret = GetInput("Darkest Secret: ");
+	std::string first_name = GetInput("First Name:");
+	std::string last_name = GetInput("Last Name:");
+	std::string nick_name = GetInput("Nickname:");
+	std::string phone_number = GetInput("Phone Number:");
+	std::string darkest_secret = GetInput("Darkest Secret:");
 
 	if (!IsValidPhoneNumber(phone_number)) {
 		std::cout << "Invalid phone number!" << std::endl;
@@ -64,7 +64,7 @@ int main(void)
 
 	while (true)
 	{
-		std::cout << "Enter command: ";
+		std::cout << "Enter command:" << std::endl;
 		std::getline(std::cin, input);
 		if (input == "EXIT")
 			break ;
