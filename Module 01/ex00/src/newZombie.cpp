@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 21:37:33 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/18 00:17:47 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/09/14 21:39:09 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/09/14 22:10:42 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include "Zombie.hpp"
 
-Zombie *newZombie( std::string name ) {
+Zombie* newZombie( std::string name ) {
 	return (new Zombie( name ));
 }

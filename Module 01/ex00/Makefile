@@ -6,35 +6,57 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/08/22 14:12:51 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/09/14 22:35:44 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= brainz
-CC		:= g++
-RM		:= rm -f
-CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -pedantic
-SRCS	:= 	./src/main.cpp \
-			./src/Zombie.cpp \
-			./src/newZombie.cpp \
-			./src/randomChump.cpp
 
-OBJS	:= ${SRCS:.cpp=.o}
+################################################################################
+# COMPILATION
+################################################################################
+CC		:=	g++
+CFLAGS	:=	-Wall -Wextra -Werror -std=c++17 -pedantic
 
-all:	$(NAME)
+################################################################################
+# GENERAL
+################################################################################
+NAME	:=	brainz
+HEADER	:=	-Iincludes
+SRC_DIR	:=	src
+OBJ_DIR	:=	obj
+RM		:=	rm -f
 
-%.o: %.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@
+SRCS	:=	main.cpp \
+			Zombie.cpp \
+			newZombie.cpp \
+			randomChump.cpp
+
+OBJS    := $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
+################################################################################
+# RULES
+################################################################################
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+all: $(NAME)
 
 $(NAME): $(OBJS)
-		@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(HEADER) $(OBJS) -o $(NAME)
+	@echo "Linking complete: $(NAME)"
+
+vpath %.cpp $(SRC_DIR)
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+	@echo "Compiling $< to $@"
+	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
-		
+	@echo "Cleaned object files"
+	$(RM) -rf $(OBJ_DIR)
+
 fclean: clean
+	@echo "Cleaned object files and executable"
 	$(RM) $(NAME)
-		
-re:	clean all
+
+re: fclean all
 
 .PHONY: all clean fclean re

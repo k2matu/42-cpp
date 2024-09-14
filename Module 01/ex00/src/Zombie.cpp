@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 21:28:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/18 00:50:53 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/09/14 21:27:34 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/09/14 22:13:37 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include "Zombie.hpp"
 
-Zombie::Zombie(std::string name) {
-	this->name_ = name;
-	std::cout << "Zombie object " << this->name_ << " created" << std::endl;
+Zombie::Zombie( std::string name ) {
+	this->_name = name;
+	std::cout << "Zombie object " << this->_name << " created" << std::endl;
 }
 
 Zombie::~Zombie() {
-	std::cout << "Zombie object " << this->name_ << " destroyed" << std::endl;
+	std::cout << "Zombie object " << this->_name << " destroyed" << std::endl;
 }
 
 void Zombie::announce( void ) {
-	std::cout << this->name_ << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+};

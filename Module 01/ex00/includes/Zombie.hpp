@@ -5,24 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 21:31:15 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/08/18 00:41:02 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/09/14 21:24:17 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/09/14 22:07:18 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#define ZOMBIE_HPP
 
-# include <iostream>
-# include <string>
+#include <string>
+#include <iostream>
 
 class Zombie {
 	private:
-		std::string name_;
+		std::string _name;
 	public:
-		Zombie(std::string name);
-		~Zombie(void);
+		Zombie( std::string _name );
+		~Zombie( void );
 		void announce( void );
 };
+
+Zombie* newZombie( std::string name );
+void randomChump( std::string name );
 
 #endif
