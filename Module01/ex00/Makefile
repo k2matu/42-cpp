@@ -6,7 +6,7 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/09/14 22:38:03 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/09/15 09:00:43 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,15 @@ SRCS	:=	main.cpp \
 			newZombie.cpp \
 			randomChump.cpp
 
-OBJS    := $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
+OBJS	:= $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 
 ################################################################################
 # RULES
 ################################################################################
+all: $(OBJ_DIR) $(NAME)
+
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-
-all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(HEADER) $(OBJS) -o $(NAME)
@@ -51,6 +51,7 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 
 clean:
 	@echo "Cleaned object files"
+	$(RM) $(OBJ_DIR)/%.o
 	$(RM) -rf $(OBJ_DIR)
 
 fclean: clean
