@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:46:52 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/13 20:41:59 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:18:36 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ public:
 	Contact(const std::string& first_name, const std::string& last_name,
 			const std::string& nick_name, const std::string& phone_number,
 			const std::string& darkest_secret);
-	std::string GetFirstName() const { return first_name_; }
-	std::string GetLastName() const { return last_name_; }
-	std::string GetNickName() const { return nick_name_; }
-	std::string GetDarkestSecret() const { return darkest_secret_; }
-	std::string GetPhoneNumber() const { return phone_number_; }
+	std::string GetFirstName() const;
+	std::string GetLastName() const;
+	std::string GetNickName() const;
+	std::string GetDarkestSecret() const;
+	std::string GetPhoneNumber() const;
 };
 
 #endif

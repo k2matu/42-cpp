@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:13:39 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/13 20:48:51 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:19:46 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ Contact PhoneBook::GetContact(int index) const {
 		throw std::out_of_range("Index out of range");
 	}
 }
+
+int	PhoneBook::GetContactCount() const { return contact_count_; }
 
 static void PrintTruncated(const std::string& str) {
 	static const size_t kMaxLength = 10;

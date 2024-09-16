@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:46:45 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/13 20:27:06 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:19:59 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PhoneBook {
 		PhoneBook();
 		void AddContactToPhoneBook(const Contact &contact);
 		void DisplayContacts() const;
-		int	GetContactCount() const { return contact_count_; };
+		int	GetContactCount() const;
 		Contact GetContact(int index) const;
 };
 
