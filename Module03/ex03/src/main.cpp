@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:30:26 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/18 00:04:13 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/18 02:33:10 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@
 int main( void ) {
 	DiamondTrap e("Bar");
 	std::cout << e.getHitPoints() << std::endl;
-	std::cout << e.getEnergyPoints() << std::endl;
 	std::cout << e.getAttackDamage() << std::endl;
+	std::cout << e.getEnergyPoints() << std::endl;
+	e.highFivesGuys();
+	e.guardGate();
+	e.attack("Fuzz");
+	e.whoAmI();
+
 	return (0);
 }

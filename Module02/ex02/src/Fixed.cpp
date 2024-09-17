@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:37:14 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/17 12:23:49 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:48:30 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ Fixed::Fixed( const float value ) {
 	this->_value = roundf(value * powerOf(2, kFractionBits));
 }
 
-
 Fixed::~Fixed( void ) {}
 
-Fixed::Fixed(const Fixed &other) : _value(other._value) {}
+Fixed::Fixed(const Fixed &src) : _value(src._value) {}
 
-Fixed &Fixed::operator=(const Fixed &other) {
-	if (this != &other)
-		this->_value = other._value;
+Fixed &Fixed::operator=(const Fixed &src) {
+	if (this != &src)
+		this->_value = src._value;
 	return (*this);
 }
 

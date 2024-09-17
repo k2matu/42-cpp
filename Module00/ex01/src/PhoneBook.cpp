@@ -6,11 +6,13 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:13:39 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/16 18:19:46 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/16 21:36:32 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PhoneBook.hpp"
+
+const int PhoneBook::kMaxContacts = 8;
 
 PhoneBook::PhoneBook()
 	: contact_count_(0), oldest_contact_(0) {}
