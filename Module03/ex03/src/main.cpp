@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:30:26 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/18 18:20:50 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/09/18 22:56:26 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,25 @@
 #include "DiamondTrap.hpp"
 
 int main( void ) {
-	DiamondTrap e("Bar");
+	ClapTrap b("Clap");
+	std::cout << b.getHitPoints() << std::endl;
+	std::cout << b.getEnergyPoints() << std::endl;
+	std::cout << b.getAttackDamage() << std::endl;
+	
+	ScavTrap d("Scav");
+	std::cout << d.getHitPoints() << std::endl;
+	std::cout << d.getEnergyPoints() << std::endl;
+	std::cout << d.getAttackDamage() << std::endl;
+	
+	FragTrap a("Frag");
+	std::cout << a.getHitPoints() << std::endl;
+	std::cout << a.getEnergyPoints() << std::endl;
+	std::cout << a.getAttackDamage() << std::endl;
+	
+	DiamondTrap e("Diamond");
 	std::cout << e.getHitPoints() << std::endl;
-	std::cout << e.getAttackDamage() << std::endl;
 	std::cout << e.getEnergyPoints() << std::endl;
+	std::cout << e.getAttackDamage() << std::endl;
 	e.highFivesGuys();
 	e.guardGate();
 	e.attack("Fuzz");
