@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 22:25:01 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 02:06:50 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/09/18 15:11:29 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/09/19 02:28:42 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAG_TRAP_HPP
-#define FRAG_TRAP_HPP
+#ifndef DOG_HPP
+#define DOG_HPP
 
-#include "ClapTrap.hpp"
+#include <string>
+#include "Animal.hpp"
 
-class FragTrap: virtual public ClapTrap {
+class Dog : public Animal {
+	protected:
+		std::string type;
 	public:
-		FragTrap( void );
-		FragTrap( std::string name );
-		~FragTrap( void );
-		FragTrap( const FragTrap &other );
-		FragTrap &operator=( const FragTrap &rhs );
-
-		void highFivesGuys( void );
+		Dog( void );
+		virtual ~Dog( void );
+		Dog( const Dog &src );
+		Dog &operator=( const Dog &rhs );
+		virtual void makeSound() const override;
 };
 
 #endif

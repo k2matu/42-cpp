@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 22:25:01 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 02:06:50 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/09/19 00:56:20 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/09/19 12:21:55 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAG_TRAP_HPP
-#define FRAG_TRAP_HPP
+#ifndef WRONG_CAT_HPP
+#define WRONG_CAT_HPP
 
-#include "ClapTrap.hpp"
+#include <string>
+#include "WrongAnimal.hpp"
 
-class FragTrap: virtual public ClapTrap {
+class WrongCat : public WrongAnimal {
+	protected:
+		std::string _type;
 	public:
-		FragTrap( void );
-		FragTrap( std::string name );
-		~FragTrap( void );
-		FragTrap( const FragTrap &other );
-		FragTrap &operator=( const FragTrap &rhs );
-
-		void highFivesGuys( void );
+		WrongCat( void );
+		virtual ~WrongCat( void );
+		WrongCat( const WrongCat &src );
+		WrongCat &operator=( const WrongCat &rhs );
+		virtual void makeSound() const override;
 };
 
 #endif

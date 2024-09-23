@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 22:25:01 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 02:06:50 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/09/18 15:11:25 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/09/19 02:28:36 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAG_TRAP_HPP
-#define FRAG_TRAP_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 
-#include "ClapTrap.hpp"
+#include <string>
+#include "Animal.hpp"
 
-class FragTrap: virtual public ClapTrap {
+class Cat : public Animal {
+	protected:
+		std::string type;
 	public:
-		FragTrap( void );
-		FragTrap( std::string name );
-		~FragTrap( void );
-		FragTrap( const FragTrap &other );
-		FragTrap &operator=( const FragTrap &rhs );
-
-		void highFivesGuys( void );
+		Cat( void );
+		virtual ~Cat( void );
+		Cat( const Cat &src );
+		Cat &operator=( const Cat &rhs );
+		virtual void makeSound() const override;
 };
 
 #endif

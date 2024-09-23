@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 22:25:01 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 02:06:50 by kmatjuhi         ###   ########.fr       */
+/*   Created: 2024/09/19 02:39:23 by kmatjuhi          #+#    #+#             */
+/*   Updated: 2024/09/19 14:49:44 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAG_TRAP_HPP
-#define FRAG_TRAP_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-#include "ClapTrap.hpp"
+#include <string>
+#include <iostream>
 
-class FragTrap: virtual public ClapTrap {
+class Brain {
+	protected:
+		std::string *_ideas;
 	public:
-		FragTrap( void );
-		FragTrap( std::string name );
-		~FragTrap( void );
-		FragTrap( const FragTrap &other );
-		FragTrap &operator=( const FragTrap &rhs );
-
-		void highFivesGuys( void );
+		Brain();
+		~Brain();
+		Brain( const Brain &src );
+		Brain &operator=( const Brain &rhs );
+		void setBrainIdeas( const std::string ideas );
+		std::string getBrainIdeas() const;
 };
 
 #endif
