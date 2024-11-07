@@ -12,7 +12,7 @@
 
 #include "Dog.hpp"
 
-Dog::Dog( void ) : Animal() {
+Dog::Dog( void ) : AAnimal() {
 	this->_type = "Dog";
 	this->_brain = new Brain;
 	std::cout << "Dog default constructor created with a brain "  << this->_brain->getBrainIdeas() <<  std::endl;
@@ -23,7 +23,7 @@ Dog::~Dog( void ) {
 	delete this->_brain;
 }
 
-Dog::Dog( const Dog &src ) : Animal( src ) {
+Dog::Dog( const Dog &src ) : AAnimal( src ) {
 	this->_type = src._type;
 	this->_brain = new Brain(*src._brain);
 	std::cout << "Dog copy constructor created " << this->_type << std::endl;
@@ -31,7 +31,7 @@ Dog::Dog( const Dog &src ) : Animal( src ) {
 
 Dog &Dog::operator=( const Dog &rhs ) {
 	if (this != &rhs ) {
-		Animal::operator=(rhs);
+		AAnimal::operator=(rhs);
 		delete this->_brain;
 		this->_brain = new Brain(*rhs._brain);
 	}

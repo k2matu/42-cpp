@@ -6,20 +6,20 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/09/19 03:13:07 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/11/07 21:17:36 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ################################################################################
 # COMPILATION
 ################################################################################
-CC		:=	g++
-CFLAGS	:=	-Wall -Wextra -Werror -std=c++17 -pedantic -Wshadow -Wno-shadow
+CC		:=	c++
+CFLAGS	:=	-Wall -Wextra -Werror -std=c++17
 
 ################################################################################
 # GENERAL
 ################################################################################
-NAME	:=	animal
+NAME	:=	aanimal
 HEADER	:=	-Iincludes
 SRC_DIR	:=	src
 OBJ_DIR	:=	obj
@@ -28,7 +28,7 @@ RM		:=	rm -f
 SRCS	:=	main.cpp \
 			Dog.cpp \
 			Cat.cpp \
-			Animal.cpp \
+			AAnimal.cpp \
 			WrongCat.cpp \
 			WrongAnimal.cpp \
 			Brain.cpp

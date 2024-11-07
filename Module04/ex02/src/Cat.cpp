@@ -12,7 +12,7 @@
 
 #include "Cat.hpp"
 
-Cat::Cat( void ) : Animal() {
+Cat::Cat( void ) : AAnimal() {
 	this->_type = "Cat";
 	this->_brain = new Brain;
 	std::cout << "Cat default constructor created with a brain " << this->_brain->getBrainIdeas() << std::endl;
@@ -23,7 +23,7 @@ Cat::~Cat( void ) {
 	delete this->_brain;
 }
 
-Cat::Cat( const Cat &src ) : Animal( src ) {
+Cat::Cat( const Cat &src ) : AAnimal( src ) {
 	this->_type = src._type;
 	this->_brain = new Brain(*src._brain);
 	std::cout << "Cat copy constructor created " << std::endl;
@@ -31,7 +31,7 @@ Cat::Cat( const Cat &src ) : Animal( src ) {
 
 Cat &Cat::operator=( const Cat &rhs ) {
 	if (this != &rhs ) {
-		Animal::operator=(rhs);
+		AAnimal::operator=(rhs);
 		delete this->_brain;
 		this->_brain = new Brain(*rhs._brain);
 	}

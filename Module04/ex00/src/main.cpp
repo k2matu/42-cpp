@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:36:23 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 02:27:47 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/11/07 20:18:47 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int main() {
 	delete j;
 	delete i;
 	delete a;
+	delete b;
 	return 0; 
 }

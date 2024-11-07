@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:56:20 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 12:21:55 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/11/07 20:20:52 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include "WrongAnimal.hpp"
 
 class WrongCat : public WrongAnimal {
-	protected:
-		std::string _type;
 	public:
 		WrongCat( void );
 		virtual ~WrongCat( void );

@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:11:29 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 02:28:42 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/11/07 20:16:36 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include "Animal.hpp"
 
 class Dog : public Animal {
-	protected:
-		std::string type;
 	public:
 		Dog( void );
 		virtual ~Dog( void );

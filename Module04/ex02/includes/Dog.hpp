@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:11:29 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/09/19 15:02:50 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:15:08 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 #define DOG_HPP
 
 #include <string>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog : public Animal {
+class Dog : public AAnimal {
 	private:
 		Brain* _brain;
-	protected:
-		std::string _type;
 	public:
 		Dog( void );
 		virtual ~Dog( void );
