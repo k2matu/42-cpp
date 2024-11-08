@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:32:59 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/11/08 19:00:52 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:05:23 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int main()
 	me->equip(tmp);
 	me->use(0, *bob);
 	me->use(2, *bob);
+	
+	me->unequip(2);
+	me->unequip(1);
 	
 	delete bob;
 	delete me;
