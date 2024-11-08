@@ -71,5 +71,6 @@ AMateria* MateriaSource::createMateria(std::string const & type) {
 			return (learnedMaterias[i]->clone());
 		}
 	}
+	
 	return (0);
 }

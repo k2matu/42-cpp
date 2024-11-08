@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:43:03 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/11/08 18:41:30 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:56:43 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,11 @@ std::string const &Character::getName() const {
 }
 
 void Character::equip(AMateria* m) {
-	if (this->_inventory_count == kMaxInventory || m == nullptr)
+	if (this->_inventory_count == kMaxInventory || m == nullptr) {
+		delete m;
+		std::cout << "Inventory is full" << std::endl;
 		return ;
+	}
 	
 	for (int i = 0; i < kMaxInventory; i++) {
 		if (inventory[i] == nullptr) {
