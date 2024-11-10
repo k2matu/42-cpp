@@ -33,7 +33,7 @@ class Form {
 		Form &operator=( const Form &rhs );
 		
 		std::string const &getName() const;
-		std::string getSigned() const;
+		bool getSigned() const;
 		int getGradeSign() const;
 		int getGradeExec() const;
 		
