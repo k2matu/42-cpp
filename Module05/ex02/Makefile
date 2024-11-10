@@ -6,7 +6,7 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/11/10 19:34:10 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/11/10 20:21:44 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 clean:
 	@echo "Cleaned object files"
 	$(RM) -rf $(OBJ_DIR)
+	$(RM) apartment_shrubbery
 
 fclean: clean
 	@echo "Cleaned object files and executable"

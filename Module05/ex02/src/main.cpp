@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:36:23 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/11/10 20:06:41 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:19:35 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 int main() {
 	try {
-		PresidentialPardonForm b("home");
+		RobotomyRequestForm b("home");
 		std::cout << b;
 		Bureaucrat invalid("Invalid", 6);
 		invalid.executeForm(b);
-		std::cout << &b;
+		std::cout << b;
 	} catch (const AForm::GradeTooHighException &e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	} catch (const AForm::GradeTooLowException &e) {
@@ -99,7 +99,7 @@ int main() {
 	try {
 		RobotomyRequestForm a("apartment");
 		std::cout << a;
-		Bureaucrat invalid("Invalid", 130);
+		Bureaucrat invalid("Invalid", 50);
 		invalid.signForm(&a);
 		invalid.executeForm(a);
 		std::cout << a;
