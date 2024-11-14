@@ -14,7 +14,7 @@
 
 Cat::Cat( void ) : Animal() {
 	this->_type = "Cat";
-	this->_brain = new Brain;
+	this->_brain = new Brain();
 	std::cout << "Cat default constructor created with a brain " << this->_brain->getBrainIdeas() << std::endl;
 }
 
