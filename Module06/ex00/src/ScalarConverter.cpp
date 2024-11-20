@@ -30,7 +30,3 @@ ScalarConverter &ScalarConverter::operator=( const ScalarConverter &rhs ) {
 	std::cout << "ScalarConverter copy assignment operator created" << std::endl;
 	return (*this);
 }
-
-void ScalarConverter::convert(const std::string &value) {
-
-}

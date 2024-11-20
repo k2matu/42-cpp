@@ -6,7 +6,7 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2024/11/11 19:18:01 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2024/11/18 15:53:26 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ OBJ_DIR	:=	obj
 RM		:=	rm -f
 
 SRCS	:=	main.cpp \
-			ScalarConverter.cpp 
+			ScalarConverter.cpp \
+			convert.cpp
 			
 
 OBJS	:= $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))

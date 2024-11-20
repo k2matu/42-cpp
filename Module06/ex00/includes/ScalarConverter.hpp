@@ -14,10 +14,16 @@
 
 #include <string>
 #include <iostream>
-#include <typeinfo>
+#include <variant>
+#include <optional>
 
 class ScalarConverter {
 	private:
+		std::string _type;
+		char _c;
+		int _i;
+		float _f;
+		double _d;
 		ScalarConverter();
 	public:
 		~ScalarConverter();
