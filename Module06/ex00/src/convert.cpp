@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/14 14:16:13 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:36:20 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ static bool isValid(const std::string &str) {
 	int f = 0;
 	int dot = hasDot(str);
 
-	for (char c : str) {
-		if (c == 'f') {
+	for (size_t i = 0; i < str.length(); i++) {
+		if (i != 0 && (str[i] == '-' || str[i] == '+')) {
+			return false;
+		}
+		if (str[i] == 'f') {
 			f++;
 		}
 	}
@@ -51,13 +54,44 @@ static void convertChar(const int value) {
 	}
 }
 
-void ScalarConverter::convert(const std::string &str) {
+static void convertInt(const double value) {
+	if (value >= std::numeric_limits<int>::lowest() && 
+		value <= std::numeric_limits<int>::max() 
+		&& !std::isnan(value) && !std::isinf(value)) {
+		int n = static_cast<int>(value);			
+		std::cout << "int: " << n << std::endl;
+	} else {
+		std::cout << "int: impossible" << std::endl;
+	}
+}
+
+static void convertFloat(const double value, const std::string str) {
+	if (value >= std::numeric_limits<float>::lowest() && 
+		value <= std::numeric_limits<float>::max()) {
+		float n = static_cast<float>(value);
+		if (hasDot(str) == 0)
+			std::cout << "float: " << n << ".0f" << std::endl;
+		else 
+			std::cout << "float: " << n << "f" << std::endl;
+	} else {
+		std::cout << "float: impossible" << std::endl;
+	}
+}
+
+static void convertDouble(const double value, const std::string str) {
+	if (hasDot(str) == 0)
+		std::cout << "double: " << value << ".0" << std::endl;
+	else 
+		std::cout << "double: " << value << std::endl;
+}
+
+static bool convertPseduoLiterals(const std::string str) {
 	if (str == "-inf" || str == "+inf" || str == "nan") {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: " << str << "f" << std::endl;
 		std::cout << "double: " << str << std::endl;
-		return ;
+		return true;
 	}
 
 	if (str == "-inff" || str == "+inff" || str == "nanf") {
@@ -68,46 +102,32 @@ void ScalarConverter::convert(const std::string &str) {
 		std::string temp = str;
 		temp.pop_back();
 		std::cout << "double: " << temp << std::endl;
-		return ;
+		return true;
 	}
-	
+	return false;
+}
+
+void ScalarConverter::convert(const std::string &str) {
+	if (convertPseduoLiterals(str))
+		return ;
+
 	try {
 		double value;
 		if (str.length() == 1) {
 			convertChar(str[0]);
 			value = static_cast<double>(str[0]);
 		} else {
-			if (isValid(str) && str.find_first_not_of("01234567890.f") == std::string::npos)
+			if (isValid(str) && str.find_first_not_of("01234567890.f-+") == std::string::npos) {
 				value = std::stod(str);
-			else
+				convertChar(value);
+			} else {
 				throw std::runtime_error("Invalid");
-			convertChar(value);
+			}
 		}
 
-		if (value >= std::numeric_limits<int>::lowest() && 
-			value <= std::numeric_limits<int>::max() 
-			&& !std::isnan(value) && !std::isinf(value)) {
-			int n = static_cast<int>(value);			
-			std::cout << "int: " << n << std::endl;
-		} else {
-			std::cout << "int: impossible" << std::endl;
-		}
-
-		if (value >= std::numeric_limits<float>::lowest() && 
-			value <= std::numeric_limits<float>::max()) {
-			float n = static_cast<float>(value);
-			if (hasDot(str) == 0)
-				std::cout << "float: " << n << ".0f" << std::endl;
-			else 
-				std::cout << "float: " << n << "f" << std::endl;
-		} else {
-			std::cout << "float: impossible" << std::endl;
-		}
-		
-		if (hasDot(str) == 0)
-			std::cout << "double: " << value << ".0" << std::endl;
-		else 
-			std::cout << "double: " << value << std::endl;
+		convertInt(value);
+		convertFloat(value, str);
+		convertDouble(value, str);
 	} catch (...) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
