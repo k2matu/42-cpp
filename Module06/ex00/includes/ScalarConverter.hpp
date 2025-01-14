@@ -16,19 +16,14 @@
 #include <iostream>
 #include <variant>
 #include <optional>
+#include <limits>
 
 class ScalarConverter {
 	private:
-		std::string _type;
-		char _c;
-		int _i;
-		float _f;
-		double _d;
 		ScalarConverter();
-	public:
 		~ScalarConverter();
 		ScalarConverter( const ScalarConverter &src );
 		ScalarConverter &operator=( const ScalarConverter &rhs );
-		
-		static void convert(const std::string &value);
+	public:
+		static void convert(const std::string &str);
 };

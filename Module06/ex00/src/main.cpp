@@ -6,13 +6,18 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:36:23 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/11/11 19:18:50 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:14:09 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <iostream>
 
 int main(int argc, char **argv) {
-	(void)argc;
+	if (argc != 2) {
+		std::cout << "Invalid number of arguments" << std::endl;
+		return 1;
+	}
 	ScalarConverter::convert(argv[1]);
+	return 0;
 }

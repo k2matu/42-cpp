@@ -6,113 +6,119 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2024/11/19 15:20:52 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:09:01 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-bool	isChar(const std::string &value) {
-	if (value.length() == 1 && std::isprint(value[0])) {
-		return (true);
-	}
-	return (false);
-}
-
-void	isIntegerPart(const std::string &value, size_t &i) {
-	if (value[i] == '-' || value[i] == '+')
-		i++;
-	while (i < value.length() && std::isdigit(value[i]))
-		i++;
-}
-
-bool isDecimalPart(const std::string &value, size_t &i) {
-	if (value[i] != '.')
-		return (false);
-	i++;
-	size_t start = i;
-	while (i < value.length() && std::isdigit(value[i]))
-		i++;
-	return (i > start);
-}
-
-std::string	validateType(const std::string &value) {
-	size_t i = 0;
+static int hasDot(const std::string &str) {
+	int dot = 0;
 	
-	isIntegerPart(value, i);
-	if (i == value.length())
-		return ("int");
-	if (!isDecimalPart(value, i))
-		return ("invalid");
-	if (i == value.length())
-		return ("double");
-	if (value[i] == 'f' && i + 1 == value.length())
-		return ("float");
-	return ("invalid");
+	for (char c : str) {
+		if (c == '.') {
+			dot++;
+		}
+	}
+	return dot;
 }
 
-std::variant<std::monostate, char, int, float, double> convertType(const std::string &value, const std::string &type) {
+static bool isValid(const std::string &str) {
+	int f = 0;
+	int dot = hasDot(str);
+
+	for (char c : str) {
+		if (c == 'f') {
+			f++;
+		}
+	}
+
+	if (dot > 1 || f > 1)
+		return false;
+	return true;
+}
+
+void ScalarConverter::convert(const std::string &str) {
+	if (str == "-inf" || str == "+inf" || str == "nan") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << str << "f" << std::endl;
+		std::cout << "double: " << str << std::endl;
+		return ;
+	}
+
+	if (str == "-inff" || str == "+inff" || str == "nanf") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << str << std::endl;
+
+		std::string temp = str;
+		temp.pop_back();
+		std::cout << "double: " << temp << std::endl;
+		return ;
+	}
+	
 	try {
-		if (type == "char")
-			return (value[0]);
-		else if (type == "int")
-			return (std::stoi(value));
-		else if (type == "double")
-			return (std::stod(value));
-		return (std::stof(value));
-	} catch (...) {
-		if (type == "float") {
-			try {
-				return (std::stod(value));
-			} catch (...) {
-				return (std::monostate{}); 
+		double value;
+		if (str.length() == 1) {
+			if (str[0] >= std::numeric_limits<char>::lowest() && 
+				str[0] <= std::numeric_limits<char>::max()) {
+					if (std::isprint(str[0]))
+						std::cout << "char: " << str[0] << std::endl;
+					else
+						std::cout << "char: Non displayable" << std::endl;
+				}
+			else {
+				std::cout << "char: impossible" << std::endl;
 			}
-		return (std::monostate{}); 
-	}}
-}
-
-void ScalarConverter::convert(const std::string &value) {
-	std::string	type;
-
-	if (value == "nan" || value == "-inf" || value == "+inf") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: ";
-		for (size_t i = 0; i < value.length(); i++) {
-			std::cout << value[i];
+			value = static_cast<double>(str[0]);
 		}
-		std::cout << "f" << std::endl;
-		std::cout << "double: " << value << std::endl;
-	}
-	
-	if (value == "nanf" || value == "-inff" || value == "+inff") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << value << std::endl;
-		std::cout << "double: ";
-		for (size_t i = 0; i < value.length() - 1; i++) {
-			std::cout << value[i];
-		} 
-		std::cout << std::endl;
-		return ;
-	}
-	
-	std::size_t found = value.find_first_not_of("-0123456789.f");
-	if (found != std::string::npos) {
-		if (isChar(value)) {
-			type = "char";
+		else {
+			if (isValid(str) && str.find_first_not_of("01234567890.f") == std::string::npos)
+				value = std::stod(str);
+			else
+				throw std::runtime_error("Invalid");
+
+			if (value >= std::numeric_limits<char>::lowest() && 
+				value <= std::numeric_limits<char>::max()) {
+				char c = static_cast<char>(value);
+				if (std::isprint(c))
+					std::cout << "char: " << c << std::endl;
+				else
+					std::cout << "char: Non displayable" << std::endl;
+			} else {
+				std::cout << "char: impossible" << std::endl;
+			}
+		}
+
+		if (value >= std::numeric_limits<int>::lowest() && 
+			value <= std::numeric_limits<int>::max() 
+			&& !std::isnan(value) && !std::isinf(value)) {
+			int n = static_cast<int>(value);			
+			std::cout << "int: " << n << std::endl;
 		} else {
-			type = "invalid";
+			std::cout << "int: impossible" << std::endl;
 		}
+
+		if (value >= std::numeric_limits<float>::lowest() && 
+			value <= std::numeric_limits<float>::max()) {
+			float n = static_cast<float>(value);
+			if (hasDot(str) == 0)
+				std::cout << "float: " << n << ".0f" << std::endl;
+			else 
+				std::cout << "float: " << n << "f" << std::endl;
+		} else {
+			std::cout << "float: impossible" << std::endl;
+		}
+		
+		if (hasDot(str) == 0)
+			std::cout << "double: " << value << ".0" << std::endl;
+		else 
+			std::cout << "double: " << value << std::endl;
+	} catch (...) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
 	}
-	type = validateType(value);
-	std::cout << type << std::endl;
-	if (type == "invalid") {
-		std::cout << "invalid" << std::endl;
-		return ;
-	} 
-	auto v = convertType(value, type);
-	std::visit([](auto &&arg) {
-	std::cout << "Value: " << arg << "\n";
-	}, v);
 }
