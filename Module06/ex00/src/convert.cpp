@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/14 14:09:01 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:16:13 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ static bool isValid(const std::string &str) {
 	return true;
 }
 
+static void convertChar(const int value) {
+	if (value >= std::numeric_limits<char>::lowest() && 
+		value <= std::numeric_limits<char>::max()) {
+		char c = static_cast<char>(value);
+		if (std::isprint(c))
+			std::cout << "char: " << c << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+	} else {
+		std::cout << "char: impossible" << std::endl;
+	}
+}
+
 void ScalarConverter::convert(const std::string &str) {
 	if (str == "-inf" || str == "+inf" || str == "nan") {
 		std::cout << "char: impossible" << std::endl;
@@ -61,34 +74,14 @@ void ScalarConverter::convert(const std::string &str) {
 	try {
 		double value;
 		if (str.length() == 1) {
-			if (str[0] >= std::numeric_limits<char>::lowest() && 
-				str[0] <= std::numeric_limits<char>::max()) {
-					if (std::isprint(str[0]))
-						std::cout << "char: " << str[0] << std::endl;
-					else
-						std::cout << "char: Non displayable" << std::endl;
-				}
-			else {
-				std::cout << "char: impossible" << std::endl;
-			}
+			convertChar(str[0]);
 			value = static_cast<double>(str[0]);
-		}
-		else {
+		} else {
 			if (isValid(str) && str.find_first_not_of("01234567890.f") == std::string::npos)
 				value = std::stod(str);
 			else
 				throw std::runtime_error("Invalid");
-
-			if (value >= std::numeric_limits<char>::lowest() && 
-				value <= std::numeric_limits<char>::max()) {
-				char c = static_cast<char>(value);
-				if (std::isprint(c))
-					std::cout << "char: " << c << std::endl;
-				else
-					std::cout << "char: Non displayable" << std::endl;
-			} else {
-				std::cout << "char: impossible" << std::endl;
-			}
+			convertChar(value);
 		}
 
 		if (value >= std::numeric_limits<int>::lowest() && 
