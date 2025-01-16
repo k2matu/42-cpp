@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/14 14:36:20 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:22:47 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static bool isValid(const std::string &str) {
 }
 
 static void convertChar(const int value) {
+	std::cout << "value is: " << value << std::endl;
 	if (value >= std::numeric_limits<char>::lowest() && 
 		value <= std::numeric_limits<char>::max()) {
 		char c = static_cast<char>(value);
@@ -55,9 +56,12 @@ static void convertChar(const int value) {
 }
 
 static void convertInt(const double value) {
+	if (value >= '0' && value <= '9'){
+		std::cout << "int: " << value << std::endl;
+		return ;
+	}
 	if (value >= std::numeric_limits<int>::lowest() && 
-		value <= std::numeric_limits<int>::max() 
-		&& !std::isnan(value) && !std::isinf(value)) {
+		value <= std::numeric_limits<int>::max()) {
 		int n = static_cast<int>(value);			
 		std::cout << "int: " << n << std::endl;
 	} else {
@@ -113,7 +117,7 @@ void ScalarConverter::convert(const std::string &str) {
 
 	try {
 		double value;
-		if (str.length() == 1) {
+		if (str.length() == 1 && str[0] < '0' && str[0] > '9') {
 			convertChar(str[0]);
 			value = static_cast<double>(str[0]);
 		} else {
