@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/17 12:19:19 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:22:22 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,10 +167,7 @@ void ScalarConverter::convert(const std::string &str) {
 	} catch (...) {
 		try {
 			float f = std::stof(str);
-			std::cout << "char: impossible" << std::endl;
-			std::cout << "int: impossible" << std::endl;
-			std::cout << "float: " << f << std::endl;
-			std::cout << "double: " << f << std::endl;
+			convertion(f, str);
 		} catch (...) {
 			try {
 				double d = std::stod(str);
