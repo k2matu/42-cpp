@@ -6,48 +6,59 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/16 13:22:47 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:26:43 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-static int hasDot(const std::string &str) {
+static int countDot(const std::string &str) {
 	int dot = 0;
 	
 	for (char c : str) {
-		if (c == '.') {
+		if (c == '.')
 			dot++;
-		}
 	}
 	return dot;
 }
 
-static bool isValid(const std::string &str) {
+static int countF(const std::string &str) {
 	int f = 0;
-	int dot = hasDot(str);
+	
+	for (char c : str) {
+		if (c == 'f')
+			f++;
+	}
+	return f;
+}
+
+static bool isValid(const std::string &str) {
+	if (str.find_first_not_of("01234567890.f-+") != std::string::npos)
+		return false;
 
 	for (size_t i = 0; i < str.length(); i++) {
-		if (i != 0 && (str[i] == '-' || str[i] == '+')) {
+		if (i != 0 && (str[i] == '-' || str[i] == '+'))
 			return false;
-		}
-		if (str[i] == 'f') {
-			f++;
-		}
 	}
 
-	if (dot > 1 || f > 1)
+	if (countDot(str) > 1 || countF(str) > 1 || (countF(str) == 1 && str.back() != 'f'))
 		return false;
 	return true;
 }
 
+static void printImpossible() {
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
+}
+
 static void convertChar(const int value) {
-	std::cout << "value is: " << value << std::endl;
 	if (value >= std::numeric_limits<char>::lowest() && 
 		value <= std::numeric_limits<char>::max()) {
 		char c = static_cast<char>(value);
 		if (std::isprint(c))
-			std::cout << "char: " << c << std::endl;
+			std::cout << "char: '" << c << "'" << std::endl;
 		else
 			std::cout << "char: Non displayable" << std::endl;
 	} else {
@@ -56,10 +67,6 @@ static void convertChar(const int value) {
 }
 
 static void convertInt(const double value) {
-	if (value >= '0' && value <= '9'){
-		std::cout << "int: " << value << std::endl;
-		return ;
-	}
 	if (value >= std::numeric_limits<int>::lowest() && 
 		value <= std::numeric_limits<int>::max()) {
 		int n = static_cast<int>(value);			
@@ -69,25 +76,24 @@ static void convertInt(const double value) {
 	}
 }
 
-static void convertFloat(const double value, const std::string str) {
-	if (value >= std::numeric_limits<float>::lowest() && 
-		value <= std::numeric_limits<float>::max()) {
-		float n = static_cast<float>(value);
-		if (hasDot(str) == 0)
-			std::cout << "float: " << n << ".0f" << std::endl;
-		else 
-			std::cout << "float: " << n << "f" << std::endl;
-	} else {
-		std::cout << "float: impossible" << std::endl;
-	}
-}
-
 static void convertDouble(const double value, const std::string str) {
-	if (hasDot(str) == 0)
+	if (countDot(str) == 0)
 		std::cout << "double: " << value << ".0" << std::endl;
 	else 
 		std::cout << "double: " << value << std::endl;
 }
+
+static void convertion(const float value, const std::string str) {
+	convertChar(value);
+	convertInt(value);
+	if (countDot(str) == 0)
+		std::cout << "float: " << value << ".0f" << std::endl;
+	else 
+		std::cout << "float: " << value << "f" << std::endl;
+	double d = static_cast<double>(value);
+	convertDouble(d, str);
+}
+
 
 static bool convertPseduoLiterals(const std::string str) {
 	if (str == "-inf" || str == "+inf" || str == "nan") {
@@ -102,10 +108,18 @@ static bool convertPseduoLiterals(const std::string str) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: " << str << std::endl;
+		std::cout << "double: " << str.substr(0, str.size() - 1) << std::endl;
+		return true;
+	}
+	return false;
+}
 
-		std::string temp = str;
-		temp.pop_back();
-		std::cout << "double: " << temp << std::endl;
+static bool isChar(const std::string str) {
+	if (str.length() == 1 && (str[0] < '0' || str[0] > '9')) {
+		convertChar(str[0]);
+		std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
+		std::cout << "float: " << static_cast<float>(str[0]) << ".0f" << std::endl;
+		std::cout << "double: " << static_cast<double>(str[0]) << ".0" << std::endl; 
 		return true;
 	}
 	return false;
@@ -114,28 +128,37 @@ static bool convertPseduoLiterals(const std::string str) {
 void ScalarConverter::convert(const std::string &str) {
 	if (convertPseduoLiterals(str))
 		return ;
-
+	
+	if (isChar(str))
+		return ;
+		
+	if (!isValid(str)) {
+		printImpossible();
+		return ;
+	}
+	
 	try {
-		double value;
-		if (str.length() == 1 && str[0] < '0' && str[0] > '9') {
-			convertChar(str[0]);
-			value = static_cast<double>(str[0]);
-		} else {
-			if (isValid(str) && str.find_first_not_of("01234567890.f-+") == std::string::npos) {
-				value = std::stod(str);
-				convertChar(value);
-			} else {
-				throw std::runtime_error("Invalid");
+		if (countDot(str) == 1) {
+			if (countF(str) == 1) {
+				float f = std::stof(str);
+				convertion(f, str);
+				return ;
 			}
+			double d = std::stod(str);
+			convertion(d, str);
+		} else {
+			int i = std::stoi(str);
+			convertion(i, str);
 		}
-
-		convertInt(value);
-		convertFloat(value, str);
-		convertDouble(value, str);
 	} catch (...) {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-		std::cout << "double: impossible" << std::endl;
+		try {
+			double d = std::stod(str);
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: impossible" << std::endl;
+			std::cout << "double: " << d << std::endl;
+		} catch (...) {
+			printImpossible();
+		}
 	}
 }
