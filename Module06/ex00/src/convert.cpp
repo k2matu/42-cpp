@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/17 11:26:43 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:58:23 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ static int countF(const std::string &str) {
 	return f;
 }
 
+static bool isFullNumber(const std::string &str) {
+	size_t i = 0;
+	while (i < str.size()) {
+		if (str[i] == '.')
+			break ;
+		i++;
+	}
+	i++;
+	while (i < str.size()) {
+		if (str[i] != '0' && str[i] != 'f')
+			return false;
+		i++;
+	}
+	return true;
+}
+
 static bool isValid(const std::string &str) {
 	if (str.find_first_not_of("01234567890.f-+") != std::string::npos)
 		return false;
@@ -41,7 +57,7 @@ static bool isValid(const std::string &str) {
 			return false;
 	}
 
-	if (countDot(str) > 1 || countF(str) > 1 || (countF(str) == 1 && str.back() != 'f'))
+	if (countDot(str) > 1 || countF(str) > 1 || (countF(str) == 1 && (str.back() != 'f' || countDot(str) != 1)))
 		return false;
 	return true;
 }
@@ -54,8 +70,7 @@ static void printImpossible() {
 }
 
 static void convertChar(const int value) {
-	if (value >= std::numeric_limits<char>::lowest() && 
-		value <= std::numeric_limits<char>::max()) {
+	if (value >= 0 && value <= 127) {
 		char c = static_cast<char>(value);
 		if (std::isprint(c))
 			std::cout << "char: '" << c << "'" << std::endl;
@@ -77,7 +92,7 @@ static void convertInt(const double value) {
 }
 
 static void convertDouble(const double value, const std::string str) {
-	if (countDot(str) == 0)
+	if (countDot(str) == 0 || isFullNumber(str))
 		std::cout << "double: " << value << ".0" << std::endl;
 	else 
 		std::cout << "double: " << value << std::endl;
@@ -86,7 +101,7 @@ static void convertDouble(const double value, const std::string str) {
 static void convertion(const float value, const std::string str) {
 	convertChar(value);
 	convertInt(value);
-	if (countDot(str) == 0)
+	if (countDot(str) == 0 || isFullNumber(str))
 		std::cout << "float: " << value << ".0f" << std::endl;
 	else 
 		std::cout << "float: " << value << "f" << std::endl;
