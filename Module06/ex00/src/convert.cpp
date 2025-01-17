@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:51:11 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/17 11:58:23 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:19:19 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,14 @@ static void convertDouble(const double value, const std::string str) {
 		std::cout << "double: " << value << std::endl;
 }
 
-static void convertion(const float value, const std::string str) {
+static void convertion(const double value, const std::string str) {
 	convertChar(value);
 	convertInt(value);
 	if (countDot(str) == 0 || isFullNumber(str))
 		std::cout << "float: " << value << ".0f" << std::endl;
 	else 
 		std::cout << "float: " << value << "f" << std::endl;
-	double d = static_cast<double>(value);
-	convertDouble(d, str);
+	convertDouble(value, str);
 }
 
 
@@ -167,13 +166,21 @@ void ScalarConverter::convert(const std::string &str) {
 		}
 	} catch (...) {
 		try {
-			double d = std::stod(str);
+			float f = std::stof(str);
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
-			std::cout << "float: impossible" << std::endl;
-			std::cout << "double: " << d << std::endl;
+			std::cout << "float: " << f << std::endl;
+			std::cout << "double: " << f << std::endl;
 		} catch (...) {
-			printImpossible();
+			try {
+				double d = std::stod(str);
+				std::cout << "char: impossible" << std::endl;
+				std::cout << "int: impossible" << std::endl;
+				std::cout << "float: impossible" << std::endl;
+				std::cout << "double: " << d << std::endl;
+			} catch (...) {
+				printImpossible();
+			}
 		}
 	}
 }
