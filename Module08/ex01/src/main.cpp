@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:36:23 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/29 13:48:45 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:55:12 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ int main() {
 		printVec(sp1.getVector());
 		std::cout << sp1.shortestSpan() << std::endl;
 		std::cout << sp1.longestSpan() << std::endl;
+	} catch (const Span::VecFullException &ex) {
+		std::cerr << ex.what() << std::endl;
+	} catch (const Span::NoSpanException &ex) {
+		std::cerr << ex.what() << std::endl;
+	}
+	
+	try {
+		Span sp2 = Span(12000);
+		sp2.addNumber(1);
+		sp2.addMultipleNumbers(4, 10000);
+		sp2.addMultipleNumbers(10, 1500);
+		sp2.addMultipleNumbers(15, 499);
+		std::cout << sp2.shortestSpan() << std::endl;
+		std::cout << sp2.longestSpan() << std::endl;
 	} catch (const Span::VecFullException &ex) {
 		std::cerr << ex.what() << std::endl;
 	} catch (const Span::NoSpanException &ex) {
