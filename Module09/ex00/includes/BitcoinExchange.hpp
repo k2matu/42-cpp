@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:40:26 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/01/31 18:27:55 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:07:47 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,27 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <map>
+#include <ctime>
+#include <sstream>
+#include <algorithm>
+#include <fstream>
 
-class BitcoinChange {
+class BitcoinExchange {
 	private:
-		std::vector<std::string> _input;
-		std::vector<std::string> _csv;
+		std::map<std::string, float> _csv;
 	public:
-		BitcoinChange();
-		~BitcoinChange();
-		BitcoinChange(const BitcoinChange &src);
-		BitcoinChange &operator=(const BitcoinChange &rhs);
+		BitcoinExchange();
+		~BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &src);
+		BitcoinExchange &operator=(const BitcoinExchange &rhs);
 		
-		void addLine(std::string &str, int i);
-		int findExchangeRate(std::string &date);
+		bool processData(const std::string &str);
+		bool processInput(const std::string &str);
 		
+		bool validateDate(std::string date);
+		bool validateValue(std::string &value);
+
 		// Exceptions
 		class NegativeNumberException: public std::exception {
 			public:
