@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:04:02 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/02/12 12:39:21 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:45:35 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,6 @@ bool BitcoinExchange::processData(const std::string &str) {
 		value = line.substr(pos + 1);
 		_csv.insert({date, std::stof(value)});
 	}
-	
-	// std::map<std::string, float>::iterator it = _csv.begin();
-    // // Iterate through the map and print the elements
-    // while (it != _csv.end()) {
-    //     std::cout << "Key: " << it->first
-    //          << ", Value: " << it->second << std::endl;
-    //     ++it;
-    // }
 
 	file.close();
 	return true;
