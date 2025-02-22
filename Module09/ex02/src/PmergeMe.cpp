@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:59:57 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/02/22 09:18:11 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 09:50:12 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ void PmergeMe::fordJohnsonSortVector(char **str) {
 		_vec.push_back(std::stoi(str[i]));
 	}
 	
+	if (_vec.size() == 1 || is_sorted(_vec.begin(), _vec.end())) {
+		std::cout << "After:  " << _vec[0] << std::endl;
+		this->_end = std::chrono::system_clock::now();
+		printTime("vector");
+		return ;
+	}
+	
 	std::vector<int> small;
 	std::vector<int> extra;
 	for (size_t i = 0; i < _vec.size(); i++) {
@@ -69,13 +76,11 @@ void PmergeMe::fordJohnsonSortVector(char **str) {
 	}
 	
 	this->_end = std::chrono::system_clock::now();
-
 	std::cout << "After: "; 
 	for (int i : _vec) {
 		std::cout << " " << i;
 	}
 	std::cout << std::endl;
-	
 	printTime("vector");
 }
 
@@ -86,7 +91,41 @@ void PmergeMe::fordJohnsonSortDeque(char **str) {
 	for (int i = 0; str[i]; i++) {
 		_deq.push_back(std::stoi(str[i]));
 	}
+	
+	if (_deq.size() == 1 || is_sorted(_deq.begin(), _deq.end())) {
+		this->_end = std::chrono::system_clock::now();
+		printTime("deque");
+		return ;
+	}
+	
+	std::deque<int> small;
+	std::deque<int> extra;
+	for (size_t i = 0; i < _deq.size(); i++) {
+		if (i + 1 < _deq.size())
+			if (_deq[i] < _deq[i + 1]) {
+				small.push_back(_deq[i]);
+				_deq.erase(_deq.begin() + i);
+			} else {
+				small.push_back(_deq[i + 1]);
+				_deq.erase(_deq.begin() + i + 1);
+			}
+		else {
+			extra.push_back(_deq[i]);
+			_deq.erase(_deq.begin() + i);
+			break;
+		}
+	}
+
+	sort(_deq.begin(), _deq.end());
+	for (size_t i = 0; i < small.size(); i++) {
+		auto it = std::upper_bound(_deq.begin(), _deq.end(), small[i]);
+		_deq.insert(it, small[i]);
+	}
+	
+	if (!extra.empty()) {
+		auto it = std::upper_bound(_deq.begin(), _deq.end(), extra[0]);
+		_deq.insert(it, extra[0]);
+	}
 	this->_end = std::chrono::system_clock::now();
 	printTime("deque");
-	
 }
