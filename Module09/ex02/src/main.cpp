@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 00:36:23 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/02/22 07:31:07 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 09:15:47 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
 	PmergeMe *m = new PmergeMe();
 	m->fordJohnsonSortVector(argv + 1);
 	m->fordJohnsonSortDeque(argv + 1);
+	
+	delete m;
 	
 	return 0;
 }

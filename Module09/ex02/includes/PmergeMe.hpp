@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:40:26 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/02/21 15:16:48 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/02/22 08:51:30 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <deque>
 #include <vector>
 #include <chrono>
+#include <algorithm>
 
 class PmergeMe {
 	private:
