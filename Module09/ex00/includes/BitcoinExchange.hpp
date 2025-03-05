@@ -6,14 +6,14 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:40:26 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/02/12 12:07:47 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/02/16 10:56:41 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <string>
-#include <vector>
+#include <array>
 #include <iostream>
 #include <map>
 #include <ctime>

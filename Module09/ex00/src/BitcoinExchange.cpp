@@ -6,7 +6,7 @@
 /*   By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:04:02 by kmatjuhi          #+#    #+#             */
-/*   Updated: 2025/02/12 12:45:35 by kmatjuhi         ###   ########.fr       */
+/*   Updated: 2025/02/16 10:56:33 by kmatjuhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,16 @@ bool isDigit(const std::string &str) {
 
 bool BitcoinExchange::validateDate(std::string date) {
 	std::istringstream ss(date);
-	std::vector<std::string> tokens;
+	std::array<std::string, 3> tokens;
 	std::string token;
+	int i = 0;
 
 	while (getline(ss, token, '-')) {
-		tokens.push_back(token);
+		tokens.at(i) = token;
+		i++;
 	}
 
-	if (tokens.size() != 3)
+	if (i != 3)
 		return false;
 	
 	// Validate YYYY-MM-DD

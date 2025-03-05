@@ -6,7 +6,7 @@
 #    By: kmatjuhi <kmatjuhi@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/12 21:05:39 by kmatjuhi          #+#    #+#              #
-#    Updated: 2025/01/17 13:52:28 by kmatjuhi         ###   ########.fr        #
+#    Updated: 2025/02/12 13:21:17 by kmatjuhi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,14 @@ CFLAGS	:=	-Wall -Wextra -Werror -std=c++17
 ################################################################################
 # GENERAL
 ################################################################################
-NAME	:=	convert
+NAME	:=	RPN
 HEADER	:=	-Iincludes
 SRC_DIR	:=	src
 OBJ_DIR	:=	obj
 RM		:=	rm -f
 
 SRCS	:=	main.cpp \
-			ScalarConverter.cpp \
-			convert.cpp
+			RPN.cpp
 
 OBJS	:= $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 
